@@ -45,6 +45,19 @@ public class IntList {
     }
 
     /**
+     * Returns a list equal to L with all elements squared. Destructive. Recursive.
+     */
+    public static void dSquareListRecursive(IntList L) {
+        if (L == null) {
+            return;
+        }else{
+            L.first = L.first * L.first;
+            dSquareListRecursive(L.rest);
+        }
+    }
+
+
+    /**
      * Returns a list equal to L with all elements squared. Non-destructive.
      */
     public static IntList squareListIterative(IntList L) {
