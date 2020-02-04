@@ -15,5 +15,5 @@ public class TestOffByN {
         assertFalse(offBy5.equalChars('f', 'h')); // false
 
     }
-    
+
 }
