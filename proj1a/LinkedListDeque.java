@@ -41,28 +41,28 @@ public class LinkedListDeque<T> {
 
     /* Adds an item of type T to the front of the deque. */
     public void addFirst(T item) {
-        sentinel.next = new StuffNode(item, sentinel,sentinel.next);
+        sentinel.next = new StuffNode(item, sentinel, sentinel.next);
         sentinel.next.next.prev = sentinel.next;
         size += 1;
     }
 
     /* Adds an item of type T to the back of the deque. */
     public void addLast(T item) {
-        sentinel.prev = new StuffNode(item, sentinel.prev,sentinel);
+        sentinel.prev = new StuffNode(item, sentinel.prev, sentinel);
         sentinel.prev.prev.next = sentinel.prev;
         size += 1;
     }
 
     /* Returns true if deque is empty, false otherwise. */
     public boolean isEmpty() {
-        if(size == 0) {
+        if (size == 0) {
             return true;
         }
         return false;
     }
 
     /* Returns the number of items in the deque. */
-    public int size(){
+    public int size() {
         return size;
     }
 
@@ -74,7 +74,7 @@ public class LinkedListDeque<T> {
 
         StuffNode ptr = sentinel.next;
 
-        while(ptr.next != sentinel.next){
+        while (ptr.next != sentinel.next) {
             System.out.print(ptr.item + " ");
             ptr = ptr.next;
         }
@@ -102,7 +102,7 @@ public class LinkedListDeque<T> {
      * If no such item exists, returns null.
      */
     public T removeLast() {
-        if( size == 0 ){
+        if (size == 0) {
             return null;
         }
 
@@ -119,13 +119,13 @@ public class LinkedListDeque<T> {
      * returns null. Must not alter the deque!
      */
     public T get(int index) {
-        if (index < 0 || index >= size ){
+        if (index < 0 || index >= size) {
             return null;
         }
 
         int i = 0;
         StuffNode ptr = sentinel.next;
-        while(true){
+        while (true) {
             if (i++ == index) {
                 return ptr.item;
             }
@@ -134,19 +134,21 @@ public class LinkedListDeque<T> {
     }
 
     /* Same as get, but uses recursion. */
+    // @source 参考书4.1的inheritance1代码
     public T getRecursive(int index) {
-        if (index < 0 || index >= size ){
+        if (index < 0 || index >= size) {
             return null;
         }
 
-        if (index == 0 ){
-            return sentinel.next.item;
+        return getRecursive(index, sentinel.next);
+    }
+
+    public T getRecursive(int index, StuffNode p) {
+        if (index == 0) {
+            return p.item;
         }
+        return getRecursive(index - 1, p.next);
 
-        //TODO: 写不出来
-        return sentinel.next.item;
-
-//        return getRecursive(index--)
     }
 
 }
