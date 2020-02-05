@@ -29,7 +29,7 @@ public class Palindrome {
         return isPalindrome(wordToDeque(word));
     }
 
-    public boolean isPalindrome(Deque d) {
+    private boolean isPalindrome(Deque d) {
 
         if (d.size() == 0 || d.size() == 1) {
             return true;
@@ -46,7 +46,7 @@ public class Palindrome {
         return isPalindromeCC(wordToDeque(word), cc);
     }
 
-    public boolean isPalindromeCC(Deque d, CharacterComparator cc) {
+    private boolean isPalindromeCC(Deque d, CharacterComparator cc) {
 
         if (d.size() == 0 || d.size() == 1) {
             return true;
