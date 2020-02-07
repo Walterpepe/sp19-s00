@@ -30,13 +30,13 @@ public class LinkedListDeque<T> {
         sentinel.next = sentinel;
         size = 0;
 
-        //TODO: 没写出来
-//        for( int i = 0; i < other.size(); i++){
-//            sentinel.prev = new StuffNode(other.get(i), sentinel.prev,sentinel);
-//            sentinel.prev.prev.next = sentinel.prev;
-//            size += 1;
-//        }
-
+        // 用Cat就好了
+        // get(i) 效率太低
+        while (other.size() != 0) {
+            sentinel.prev = new StuffNode((T) other.removeFirst(), sentinel.prev, sentinel);
+            sentinel.prev.prev.next = sentinel.prev;
+            size += 1;
+        }
     }
 
     /* Adds an item of type T to the front of the deque. */
