@@ -3,26 +3,35 @@ import java.util.ArrayList;
 
 public class UnionFind {
 
-    // TODO - Add instance variables?
+    // Add instance variables?
     private int[] parent;
+    private int count;
 
     /* Creates a UnionFind data structure holding n vertices. Initially, all
        vertices are in disjoint sets. */
     public UnionFind(int n) {
         parent = new int[n];
+        count = n;
         for (int i = 0; i < n; i++) {
             parent[i] = -1;
         }
     }
 
+    public int count() {
+        return count;
+    }
+
     /* Throws an exception if v1 is not a valid index. */
     private void validate(int vertex) {
-        throw new IllegalArgumentException();
+        int n = parent.length;
+        if (0 < vertex || vertex >= n) {
+            throw new IllegalArgumentException("index " + vertex + " is not between 0 and " + (n - 1));
+        }
     }
 
     /* Returns the size of the set v1 belongs to. */
     public int sizeOf(int v1) {
-        return parent[find(v1)];
+        return -parent[find(v1)];
     }
 
     /* Returns the parent of v1. If v1 is the root of a tree, returns the
@@ -45,16 +54,20 @@ public class UnionFind {
         int i = find(v1);
         int j = find(v2);
 
-        if (parent[i] > parent[j]){
+        if (i == j) return;
+
+        // size 是负数
+        if (parent[i] < parent[j]) {
             int size = parent[j];
             parent[j] = i;
             parent[i] += size;
 
-        }else {
+        } else {
             int size = parent[i];
             parent[i] = j;
             parent[j] += size;
         }
+        count--;
     }
 
     /* Returns the root of the set V belongs to. Path-compression is employed
@@ -64,15 +77,32 @@ public class UnionFind {
         List<Integer> alongPath = new ArrayList<>();
 
         while (parent[vertex] >= 0) {
-            alongPath.add(parent[vertex]);
+            alongPath.add(vertex);
             vertex = parent[vertex];
         }
 
-        for (Integer item: alongPath){
+        if (alongPath.size() == 1){
+            return vertex;
+        }
+
+        for (Integer item : alongPath) {
             parent[item] = vertex;
         }
 
         return vertex;
+    }
+
+    public static void main(String[] args) {
+        int n = StdIn.readInt();
+        UnionFind uf = new UnionFind(n);
+        while (!StdIn.isEmpty()) {
+            int p = StdIn.readInt();
+            int q = StdIn.readInt();
+            if (uf.connected(p, q)) continue;
+            uf.union(p, q);
+            StdOut.println(p + " " + q);
+        }
+        StdOut.println(uf.count() + " components");
     }
 
 }
