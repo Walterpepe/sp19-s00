@@ -18,4 +18,15 @@ public class RandomGenerator {
     public static boolean getRandomBoolean() {
         return r.nextBoolean();
     }
+
+    public static void main(String[] args){
+        System.out.println(getRandomInt(1));
+        System.out.println(getRandomInt(1));
+        System.out.println(getRandomInt(1));
+        System.out.println(getRandomInt(1));
+        System.out.println(getRandomInt(1));
+        System.out.println(getRandomInt(1));
+        System.out.println(getRandomInt(1));
+    }
+
 }
