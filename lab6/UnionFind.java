@@ -58,14 +58,12 @@ public class UnionFind {
 
         // size 是负数
         if (parent[i] < parent[j]) {
-            int size = parent[j];
+            parent[i] += parent[j];
             parent[j] = i;
-            parent[i] += size;
 
         } else {
-            int size = parent[i];
+            parent[j] += parent[i];
             parent[i] = j;
-            parent[j] += size;
         }
         count--;
     }
@@ -74,22 +72,20 @@ public class UnionFind {
        allowing for fast search-time. */
     public int find(int vertex) {
 
-        List<Integer> alongPath = new ArrayList<>();
+        validate(vertex);
+        int root = vertex;
 
-        while (parent[vertex] >= 0) {
-            alongPath.add(vertex);
-            vertex = parent[vertex];
+        while (parent[root] >= 0) {
+            root = parent[root];
         }
 
-        if (alongPath.size() == 1){
-            return vertex;
+        while (vertex != root) {
+            int currParent = parent(vertex);
+            parent[vertex] = root;
+            vertex = currParent;
         }
-
-        for (Integer item : alongPath) {
-            parent[item] = vertex;
-        }
-
-        return vertex;
+        
+        return root;
     }
 
     public static void main(String[] args) {
