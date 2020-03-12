@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.io.IOException;
 import java.util.Scanner;
+
+import edu.princeton.cs.algs4.SeparateChainingHashST;
 import edu.princeton.cs.algs4.Stopwatch;
 
 /**
@@ -33,6 +35,10 @@ public class InsertInOrderSpeedTest {
             System.out.print("\nEnter # strings to insert into MyHashMap: ");
             timeInOrderMap61B(new MyHashMap<String, Integer>(), 
                               i.waitForPositiveInt(input));
+
+            System.out.print("\nEnter # strings to insert into SeparateChainingHashST: ");
+            timeInOrderMapAlgs4(new SeparateChainingHashST<String, Integer>(),
+                    i.waitForPositiveInt(input));
     
             System.out.print("\nEnter # strings to insert into Java's HashMap: ");
             timeInOrderHashMap(new HashMap<String, Integer>(), 
@@ -54,6 +60,16 @@ public class InsertInOrderSpeedTest {
         for (int i = 0; i < N; i++) {
             s = StringUtils.nextString(s);
             map61B.put(s, new Integer(i));
+        }
+        return sw.elapsedTime();
+    }
+
+    public static double insertInOrder(SeparateChainingHashST<String, Integer> mapAlgs4, int N) {
+        Stopwatch sw = new Stopwatch();
+        String s = "cat";
+        for (int i = 0; i < N; i++) {
+            s = StringUtils.nextString(s);
+            mapAlgs4.put(s, new Integer(i));
         }
         return sw.elapsedTime();
     }
@@ -84,6 +100,17 @@ public class InsertInOrderSpeedTest {
             printInfoOnStackOverflow(N); 
         } catch (RuntimeException e) { 
             e.printStackTrace(); 
+        }
+    }
+
+    public static void timeInOrderMapAlgs4(SeparateChainingHashST<String, Integer> map, int N) {
+        try {
+            double mapTime = insertInOrder(map, N);
+            System.out.printf(map.getClass() + ": %.2f sec\n", mapTime);
+        } catch (StackOverflowError e) {
+            printInfoOnStackOverflow(N);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
         }
     }
 
