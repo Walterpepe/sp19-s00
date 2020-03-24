@@ -20,7 +20,7 @@ public class ArrayHeapMinPQTest {
     }
 
     @Test
-    public void sanityChangePriority() {
+    public void sanityChangePriorityTest() {
         ExtrinsicMinPQ<String> t = new ArrayHeapMinPQ();
         for (int i = 0; i < 10; i++) {
             t.add("hi" + i, i);
