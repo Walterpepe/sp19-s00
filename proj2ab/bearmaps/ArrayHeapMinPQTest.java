@@ -25,12 +25,12 @@ public class ArrayHeapMinPQTest {
         for (int i = 0; i < 10; i++) {
             t.add("hi" + i, i);
         }
+        ((ArrayHeapMinPQ)t).printMinHeap();
+
         t.changePriority("hi0", 11);
-        System.out.println("test");
+
+        ((ArrayHeapMinPQ)t).printMinHeap();
     }
-
-
-
 
 
 }

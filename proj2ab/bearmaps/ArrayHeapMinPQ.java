@@ -80,6 +80,7 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
         assert capacity > n;
         ArrayHeapMinPQ.PriorityNode[] temp = new ArrayHeapMinPQ.PriorityNode[capacity];
 
+//        System.arraycopy(items, 0, temp, 0, items.length);
         for (int i = 1; i <= n; i++) {
             temp[i] = items[i];
         }
@@ -141,11 +142,12 @@ public class ArrayHeapMinPQ<T> implements ExtrinsicMinPQ<T> {
 
         items[index].setPriority(priority);
 
-        if(greater(index, 2*index) || greater(index, 2*index + 1)){
+        if( ( 2*index < n && greater(index, 2*index)) || ( 2* index +1 < n && greater(index, 2*index + 1))){
             sink(index);
-        }else if (greater(index/2, index)){
+        }else if( index/2 > 0 && greater(index/2, index)){
             swim(index);
         }
+        assert isMinHeap();
     }
 
     private class PriorityNode implements Comparable<PriorityNode> {
