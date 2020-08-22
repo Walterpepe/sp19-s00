@@ -1,9 +1,11 @@
 package hw3.hash;
-import java.util.List;
-import java.util.ArrayList;
+
 import edu.princeton.cs.algs4.StdDraw;
-import java.awt.Color;
 import edu.princeton.cs.algs4.StdRandom;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ComplexOomage implements Oomage {
     protected List<Integer> params;
@@ -30,7 +32,7 @@ public class ComplexOomage implements Oomage {
 
     public ComplexOomage(List<Integer> params) {
         if (params == null) {
-            throw new IllegalArgumentException("params must not be null!");            
+            throw new IllegalArgumentException("params must not be null!");
         }
 
         for (Integer x : params) {
@@ -76,9 +78,23 @@ public class ComplexOomage implements Oomage {
         ArrayList<Integer> params = new ArrayList<>(N);
         for (int i = 0; i < N; i += 1) {
             params.add(StdRandom.uniform(0, 255));
+//            params.add(255);
         }
         return new ComplexOomage(params);
     }
+
+    public static ComplexOomage randomComplexOomageEndsSame4() {
+        int N = StdRandom.uniform(4, 10);
+        ArrayList<Integer> params = new ArrayList<>(N);
+        for (int i = 0; i < N - 4; i += 1) {
+            params.add(StdRandom.uniform(0, 255));
+        }
+        for (int i = N - 4; i < N; i++) {
+            params.add(9);
+        }
+        return new ComplexOomage(params);
+    }
+
 
     public static void main(String[] args) {
         System.out.println("Drawing 4 random complex Oomages.");
