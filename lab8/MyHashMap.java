@@ -51,7 +51,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
 //        table = (ArrayList<Entry<K, V>>[]) new Object[initialSize];
         table = new ArrayList[initialSize];
         for(int i =0; i < initialSize; i++ ){
-            table[i] = new ArrayList();
+            table[i] = new ArrayList<>();
         }
         this.loadFactor = loadFactor;
         size = 0;
@@ -64,7 +64,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
     @Override
     public void clear() {
         for(int i =0; i < table.length; i++ ){
-            table[i] = new ArrayList();
+            table[i] = new ArrayList<>();
         }
         size = 0;
     }
@@ -88,8 +88,8 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
             throw new IllegalArgumentException();
         }
 
-        Entry e = find(key, table[hash(key)]);
-        return (e == null) ? null : (V) e.value; // 没搞懂这块
+        Entry<K, V> e = find(key, table[hash(key)]);
+        return (e == null) ? null : e.value;
     }
 
     /**
@@ -156,7 +156,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      * Increase number of bins.
      */
     private void grow() {
-        MyHashMap<K, V> newMap = new MyHashMap((table.length * 2), loadFactor);
+        MyHashMap<K, V> newMap = new MyHashMap<>((table.length * 2), loadFactor);
         newMap.putAll(this);
         copyFrom(newMap);
     }
@@ -166,7 +166,7 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
      */
     @Override
     public Set<K> keySet() {
-        Set s = new HashSet();
+        Set<K> s = new HashSet<>();
         for(K k: this){
             s.add(k);
         }

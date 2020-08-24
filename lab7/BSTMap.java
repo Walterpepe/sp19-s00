@@ -49,7 +49,7 @@ public class BSTMap<K extends Comparable<K>, V> extends BST<K, V> implements Map
     @Override
     public Set<K> keySet() {
         Set<K> hashSet = new HashSet<>();
-        for (K k : keys()) {
+        for (K k : super.keys()) {
             hashSet.add(k);
         }
         return hashSet;
@@ -60,7 +60,12 @@ public class BSTMap<K extends Comparable<K>, V> extends BST<K, V> implements Map
      * UnsupportedOperationException. */
     @Override
     public V remove(K key) {
-        throw new UnsupportedOperationException();
+//        throw new UnsupportedOperationException();
+        V val = super.get(key);
+        if (val != null){
+            super.delete(key);
+        }
+        return val;
     }
 
     /* Removes the entry for the specified key only if it is currently mapped to
@@ -68,12 +73,18 @@ public class BSTMap<K extends Comparable<K>, V> extends BST<K, V> implements Map
      * throw an UnsupportedOperationException.*/
     @Override
     public V remove(K key, V value) {
-        throw new UnsupportedOperationException();
+//        throw new UnsupportedOperationException();
+        V val = super.get(key);
+        if (val != null && val == value){
+            super.delete(key);
+        }
+        return val;
     }
 
     @Override
     public Iterator<K> iterator() {
-        throw new UnsupportedOperationException();
+//        throw new UnsupportedOperationException();
+        return super.keys().iterator();
     }
 
     // prints out your BSTMap in order of increasing Key.
