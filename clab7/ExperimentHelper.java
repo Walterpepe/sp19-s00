@@ -1,5 +1,3 @@
-import java.lang.Math;
-
 /**
  * Created by hug.
  */
@@ -20,7 +18,7 @@ public class ExperimentHelper {
     public static int optimalIPL(int N) {
 
         int count = 0;
-        int height = (int) (Math.log((double) N) / Math.log((double) 2));
+        int height = (int) (Math.log(N) / Math.log(2));
         int oipl = 0;
         for (int i = 1; i <= height; i++) {
             for (int j = 1; j <= Math.pow(2, i); j++) {
@@ -49,15 +47,20 @@ public class ExperimentHelper {
     }
 
 
-    public static void asymmetric(BST bst){
+    public static void asymmetric(BST<String> bst) {
         bst.deleteTakingSuccessor(bst.getRandomKey());
         bst.add(StringUtils.randomString(5));
     }
 
-    public static void symmetric(BST bst){
+    public static void symmetric(BST<String> bst) {
         bst.deleteTakingRandom(bst.getRandomKey());
         bst.add(StringUtils.randomString(5));
     }
 
+    public static void main(String[] args) {
+        for (int i = 1; i <= 8; i++) {
+            System.out.printf("N = %d, OIPL: %d\n", i, optimalIPL(i));
+        }
+    }
 
 }

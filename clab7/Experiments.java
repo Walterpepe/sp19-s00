@@ -38,7 +38,7 @@ public class Experiments {
 
         int N = 5000;
         int L = 5;
-        int ACTION = 100;
+        int ACTION = 1000;
 
         BST<String> mapBST = new BST<>();
 
