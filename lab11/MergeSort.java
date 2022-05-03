@@ -90,7 +90,7 @@ public class MergeSort {
         // Your code here!
         Queue<Queue<Item>> siq = makeSingleItemQueues(items);
 
-        while(siq.size() == 1){
+        while(siq.size() != 1){
             int limit = siq.size();
             for(int i=0; i<limit; i+=2){
                 Queue<Item> q1 = siq.dequeue();

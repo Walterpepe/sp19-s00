@@ -39,6 +39,7 @@ public class TestSortAlgs {
         tas.enqueue("Omar");
         tas.enqueue("Itai");
 
+        System.out.println(MergeSort.mergeSort(tas));
         assertTrue(isSorted(MergeSort.mergeSort(tas)));
     }
 
@@ -55,6 +56,7 @@ public class TestSortAlgs {
         tas.enqueue(17);
         tas.enqueue(17);
 
+        System.out.println(MergeSort.mergeSort(tas));
         assertTrue(isSorted(MergeSort.mergeSort(tas)));
     }
 

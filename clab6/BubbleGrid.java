@@ -6,13 +6,7 @@ public class BubbleGrid {
     public BubbleGrid(int[][] grids) {
 
         int row = grids.length;
-        if (row == 0) {
-            throw new IllegalArgumentException();
-        }
         int column = grids[0].length;
-        if (column == 0) {
-            throw new IllegalArgumentException();
-        }
 
         // 多带一个顶层节点
         this.grids = new UnionFind(row * column + 1);
@@ -23,7 +17,6 @@ public class BubbleGrid {
                 this.grids.union(j + 1 , 0);
             }
         }
-
 
     }
 
